@@ -36,19 +36,20 @@
    </left>
    <right>
       <AnchorPane prefHeight="400.0" prefWidth="332.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="81.0" layoutY="39.0" prefHeight="33.0" prefWidth="130.0" text="Secure Login" textAlignment="CENTER" underline="true">
-               <font>
-                  <Font name="Corbel Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="27.0" layoutY="115.0" prefHeight="17.0" prefWidth="61.0" text="Username:" />
-            <Label layoutX="27.0" layoutY="167.0" prefHeight="17.0" prefWidth="61.0" text="Password:" />
-            <TextField fx:id="usernameTextField" layoutX="97.0" layoutY="111.0" promptText="Username" />
-            <PasswordField fx:id="passwordPasswordField" layoutX="97.0" layoutY="163.0" promptText="Password" />
-            <Button fx:id="loginButton" layoutX="17.0" layoutY="246.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="256.0" text="Login" />
-            <Button fx:id="quitButton" layoutX="18.0" layoutY="292.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="256.0" text="Quit" />
-         </children>
+         <Label layoutX="81.0" layoutY="39.0" prefHeight="33.0" prefWidth="130.0" text="Secure Login"
+                textAlignment="CENTER" underline="true">
+            <font>
+               <Font name="Corbel Bold" size="22.0"/>
+            </font>
+         </Label>
+         <Label layoutX="27.0" layoutY="115.0" prefHeight="17.0" prefWidth="61.0" text="Username:"/>
+         <Label layoutX="27.0" layoutY="167.0" prefHeight="17.0" prefWidth="61.0" text="Password:"/>
+         <TextField fx:id="usernameTextField" layoutX="97.0" layoutY="111.0" promptText="Username"/>
+         <PasswordField fx:id="passwordPasswordField" layoutX="97.0" layoutY="163.0" promptText="Password"/>
+         <Button fx:id="loginButton" layoutX="17.0" layoutY="246.0" mnemonicParsing="false" prefHeight="25.0"
+                 prefWidth="256.0" text="Login"/>
+         <Button fx:id="quitButton" layoutX="18.0" layoutY="292.0" mnemonicParsing="false" prefHeight="25.0"
+                 prefWidth="256.0" text="Quit"/>
       </AnchorPane>
    </right>
 </BorderPane>
