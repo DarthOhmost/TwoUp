@@ -12,7 +12,7 @@ public class TwoUpApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TwoUpApplication.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 520, 400);
-        stage.setTitle("Hello!");
+        stage.setTitle("Two Up");
         stage.setScene(scene);
         stage.show();
     }
