@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwoUp.TwoUpController">
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="120.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
          <Label fx:id="stylesLabel" layoutX="45.0" layoutY="5.0" text="Styles" textFill="WHITE" underline="true" />
@@ -24,8 +24,8 @@
    </right>
    <bottom>
       <AnchorPane prefHeight="120.0" prefWidth="520.0" style="-fx-background-color: brown;" BorderPane.alignment="CENTER">
-         <Button fx:id="headsButton" layoutX="153.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Heads" />
-         <Button fx:id="tailsButton" layoutX="295.0" layoutY="13.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Tails" />
+         <Button fx:id="headsButton" layoutX="153.0" layoutY="13.0" mnemonicParsing="false" onAction="#headsButtonOnAction" prefHeight="25.0" prefWidth="80.0" text="Heads" />
+         <Button fx:id="tailsButton" layoutX="295.0" layoutY="13.0" mnemonicParsing="false" onAction="#tailsButtonOnAction" prefHeight="25.0" prefWidth="80.0" text="Tails" />
          <Label fx:id="resultsLabel" layoutX="184.0" layoutY="52.0" text="Play Again/ Results" textFill="WHITE">
             <font>
                <Font size="18.0" />
@@ -51,7 +51,7 @@
                <Font size="27.0" />
             </font>
          </Label>
-         <Button fx:id="quitButton2" layoutX="240.0" layoutY="85.0" mnemonicParsing="false" text="Quit" />
+         <Button fx:id="quitButton2" layoutX="240.0" layoutY="85.0" mnemonicParsing="false" onAction="#quitButton2OnAction" text="Quit" />
       </AnchorPane>
    </bottom>
    <top>
