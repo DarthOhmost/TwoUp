@@ -14,6 +14,9 @@ public class TwoUpController {
     private Label currentScoreDisplay;
 
     @FXML
+    private Label resultsLabel;
+
+    @FXML
     private Button headsButton;
 
     @FXML
@@ -34,6 +37,14 @@ public class TwoUpController {
 
         TwoUpController aNumber = new TwoUpController();
         int randomNumber = aNumber.randomNumber();
+        if (randomNumber == 1){
+            resultsLabel.setText("Win");
+        } else if (randomNumber == 0){
+            resultsLabel.setText("Roll Again");
+        } else {
+            resultsLabel.setText("Lose");
+        }
+
 
         currentScoreDisplay.setText(String.valueOf(randomNumber));
     }
@@ -43,6 +54,13 @@ public class TwoUpController {
 
         TwoUpController aNumber = new TwoUpController();
         int randomNumber = aNumber.randomNumber();
+        if (randomNumber == 2){
+            resultsLabel.setText("Win");
+        } else if (randomNumber == 0){
+            resultsLabel.setText("Roll Again");
+        } else {
+            resultsLabel.setText("Lose");
+        }
 
         currentScoreDisplay.setText(String.valueOf(randomNumber));
     }
