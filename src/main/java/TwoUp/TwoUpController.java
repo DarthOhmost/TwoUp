@@ -14,6 +14,9 @@ public class TwoUpController {
     private Label currentScoreDisplay;
 
     @FXML
+    private Label usernameLabel;
+
+    @FXML
     private Label resultsLabel;
 
     @FXML
@@ -21,6 +24,13 @@ public class TwoUpController {
 
     @FXML
     private Button quitButton2;
+
+    @FXML
+    private Label highscoreNumberDisplay;
+
+    public int highNum = 0;
+
+    public int num = 0;
 
     public int randomNumber() {
 
@@ -39,6 +49,10 @@ public class TwoUpController {
         int randomNumber = aNumber.randomNumber();
         if (randomNumber == 1){
             resultsLabel.setText("Win");
+            num = num + 1;
+            if (num > highNum){
+                highscoreNumberDisplay.setText(String.valueOf(num));
+            }
         } else if (randomNumber == 0){
             resultsLabel.setText("Roll Again");
         } else {
@@ -46,7 +60,7 @@ public class TwoUpController {
         }
 
 
-        currentScoreDisplay.setText(String.valueOf(randomNumber));
+        currentScoreDisplay.setText(String.valueOf(num));
     }
 
     @FXML
@@ -56,13 +70,17 @@ public class TwoUpController {
         int randomNumber = aNumber.randomNumber();
         if (randomNumber == 2){
             resultsLabel.setText("Win");
+            num = num + 1;
+            if (num > highNum){
+                highscoreNumberDisplay.setText(String.valueOf(num));
+            }
         } else if (randomNumber == 0){
             resultsLabel.setText("Roll Again");
         } else {
             resultsLabel.setText("Lose");
         }
 
-        currentScoreDisplay.setText(String.valueOf(randomNumber));
+        currentScoreDisplay.setText(String.valueOf(num));
     }
 
     @FXML

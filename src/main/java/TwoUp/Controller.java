@@ -55,7 +55,7 @@ public class Controller {
     @FXML
     private void sceneTrigger() throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("TestPage.fxml"));
+        root = FXMLLoader.load(getClass().getResource("MainGame.fxml"));
         stage = (Stage)loginMessageLabel.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
