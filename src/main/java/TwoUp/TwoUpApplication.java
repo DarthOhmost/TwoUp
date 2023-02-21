@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class TwoUpApplication extends Application {
         Scene sceneLogin = new Scene(root);
         stage.setTitle("Two Up");
         stage.setScene(sceneLogin);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 
