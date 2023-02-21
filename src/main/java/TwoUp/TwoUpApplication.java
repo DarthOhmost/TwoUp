@@ -4,13 +4,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class TwoUpApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         //Setting up The Login Page
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         Scene sceneLogin = new Scene(root);
