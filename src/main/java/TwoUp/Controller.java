@@ -17,14 +17,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Controller {
-
     private Stage stage;
 
     private Scene scene;
 
     private Parent root;
 
-    public String Fir;
+    public static String Fir;
 
     public String Las;
     @FXML
@@ -41,7 +40,7 @@ public class Controller {
     private PasswordField passwordPasswordField;
 
     @FXML
-    public void loginButtonOnAction(ActionEvent e) {
+    public void loginButtonOnAction(ActionEvent e) throws IOException {
 
         if (usernameTextField.getText().isBlank() == false && passwordPasswordField.getText().isBlank() == false) {
             //loginMessageLabel.setText("Please Enter Valid Username or Password");
@@ -58,7 +57,10 @@ public class Controller {
     @FXML
     private void sceneTrigger() throws IOException
     {
-        root = FXMLLoader.load(getClass().getResource("MainGame.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainGame.fxml"));
+        Parent root = loader.load();
+        TwoUpController twoUpController = loader.getController();
+        twoUpController.setLabelText(Fir+" "+Las);
         stage = (Stage)loginMessageLabel.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -100,6 +102,9 @@ public class Controller {
                     }
 
                     loginMessageLabel.setText(String.valueOf(Fir +" "+ Las));
+
+
+
                     sceneTrigger();
                 } else{
                     loginMessageLabel.setText("Invalid Login Please Try Again");

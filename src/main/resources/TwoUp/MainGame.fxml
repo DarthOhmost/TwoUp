@@ -62,9 +62,9 @@
                <Font size="32.0" />
             </font>
          </Label>
-         <Label fx:id="usernameLabel" layoutX="339.0" text="Username" underline="true">
+         <Label fx:id="usernameLabel" layoutX="339.0" layoutY="16.0" text="Username" underline="true">
             <font>
-               <Font size="32.0" />
+               <Font size="16.0" />
             </font>
          </Label>
       </AnchorPane>

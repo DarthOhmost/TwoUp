@@ -85,6 +85,7 @@ public class TwoUpController {
     };
 
 
+
     @FXML
     private ImageView coinAnimation;
 
@@ -104,11 +105,15 @@ public class TwoUpController {
     private Button quitButton2;
 
     @FXML
-    private Label highscoreNumberDisplay;
+    public Label highscoreNumberDisplay;
 
     public int highNum = 0;
 
     public int num = 0;
+
+    public void setLabelText(String text){
+        usernameLabel.setText(text);
+    }
 
     public int randomNumber() {
 
