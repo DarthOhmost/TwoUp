@@ -137,6 +137,7 @@ public class TwoUpController {
         } else {
             animationTails.play();
             resultsLabel.setText("Lose");
+            num = num + -1;
         }
 
 
@@ -161,6 +162,7 @@ public class TwoUpController {
         } else {
             animationHeads.play();
             resultsLabel.setText("Lose");
+            num = num + -1;
         }
 
         currentScoreDisplay.setText(String.valueOf(num));

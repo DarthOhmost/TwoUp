@@ -24,6 +24,9 @@ public class Controller {
 
     private Parent root;
 
+    public String Fir;
+
+    public String Las;
     @FXML
 
     private Button loginButton;
@@ -74,14 +77,29 @@ public class Controller {
         Connection connectDB = connectNow.getConnection();
 
         String verifyLogin = "select count(1) FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
-
+        String fName = "select Firstname FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
+        String lName = "select Lastname FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
+            Statement first = connectDB.createStatement();
+            ResultSet fist = first.executeQuery(fName);
+            Statement last = connectDB.createStatement();
+            ResultSet las = last.executeQuery(lName);
 
             while(queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
-                    loginMessageLabel.setText("Welcome");
+
+                    while (fist.next()) {
+                        Fir = fist.getString("Firstname");
+                        //System.out.println(Fir);
+                    }
+                    while (las.next()) {
+                        Las = las.getString("Lastname");
+                        //System.out.println(Las);
+                    }
+
+                    loginMessageLabel.setText(String.valueOf(Fir +" "+ Las));
                     sceneTrigger();
                 } else{
                     loginMessageLabel.setText("Invalid Login Please Try Again");
@@ -94,5 +112,6 @@ public class Controller {
 
 
     }
+
 
 }
