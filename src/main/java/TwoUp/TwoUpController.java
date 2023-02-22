@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -107,12 +108,27 @@ public class TwoUpController {
     @FXML
     public Label highscoreNumberDisplay;
 
+    @FXML
+    public Label userNum;
+
+    @FXML
+    public Label passNum;
+
     public int highNum = 0;
 
     public int num = 0;
 
-    public void setLabelText(String text){
+    public void setLabelTextu(String text){
         usernameLabel.setText(text);
+    }
+    public void setLabelTexth(String text){
+        highscoreNumberDisplay.setText(text);
+    }
+    public void setLabelTextun(String text){
+        userNum.setText(text);
+    }
+    public void setLabelTextup(String text){
+        passNum.setText(text);
     }
 
     public int randomNumber() {
@@ -144,7 +160,8 @@ public class TwoUpController {
             resultsLabel.setText("Lose");
             num = num + -1;
         }
-
+        //Test To See if Username and Password was being passed to This Controller
+        //System.out.println(userNum + " " + passNum);
 
         currentScoreDisplay.setText(String.valueOf(num));
     }
@@ -174,7 +191,19 @@ public class TwoUpController {
     }
 
     @FXML
-    private void quitButton2OnAction(ActionEvent e) {
+    private void quitButton2OnAction(ActionEvent e) throws SQLException {
+
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection st = connectNow.getConnection();
+        String query = "update two_up_users set UserScore = '"+ Integer.parseInt (highscoreNumberDisplay.getText()) +"' WHERE username = '" + Integer.parseInt (userNum.getText()) + "' AND password = '" + Integer.parseInt (passNum.getText()) + "'";
+        try {
+            Statement upda = st.createStatement();
+            Integer update = upda.executeUpdate(query);
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+
         Stage stage = (Stage) quitButton2.getScene().getWindow();
         stage.close();
     }

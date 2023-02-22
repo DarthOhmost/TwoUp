@@ -26,6 +26,8 @@ public class Controller {
     public static String Fir;
 
     public String Las;
+
+    public Integer High;
     @FXML
 
     private Button loginButton;
@@ -60,7 +62,11 @@ public class Controller {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainGame.fxml"));
         Parent root = loader.load();
         TwoUpController twoUpController = loader.getController();
-        twoUpController.setLabelText(Fir+" "+Las);
+        twoUpController.setLabelTextu(Fir+" "+Las);
+        twoUpController.setLabelTexth(String.valueOf(High));
+        twoUpController.setLabelTextun(usernameTextField.getText());
+        twoUpController.setLabelTextup(passwordPasswordField.getText());
+
         stage = (Stage)loginMessageLabel.getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -81,6 +87,7 @@ public class Controller {
         String verifyLogin = "select count(1) FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
         String fName = "select Firstname FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
         String lName = "select Lastname FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
+        String hScore = "select UserScore FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
@@ -88,6 +95,8 @@ public class Controller {
             ResultSet fist = first.executeQuery(fName);
             Statement last = connectDB.createStatement();
             ResultSet las = last.executeQuery(lName);
+            Statement high = connectDB.createStatement();
+            ResultSet hi = high.executeQuery(hScore);
 
             while(queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
@@ -100,7 +109,10 @@ public class Controller {
                         Las = las.getString("Lastname");
                         //System.out.println(Las);
                     }
-
+                    while (hi.next()) {
+                        High = Integer.valueOf(hi.getString("UserScore"));
+                        //System.out.println(hi);
+                    }
                     loginMessageLabel.setText(String.valueOf(Fir +" "+ Las));
 
 
