@@ -96,6 +96,8 @@ public class TwoUpController {
         }
     };
 
+    //Setting up FXML settings
+
     @FXML
     private ImageView coinAnimation;
 
@@ -186,6 +188,8 @@ public class TwoUpController {
 
     public int num = 0;
 
+    //When Page is being loaded, run this constructor to set up the leaderboard
+
     public void startupleader(){
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection st = connectNow.getConnection();
@@ -208,7 +212,7 @@ public class TwoUpController {
             }
             //Testing for Correct User Info
             //System.out.println(data.get(2));
-            rank1.setText(String.valueOf(data.get(2)));
+            //rank1.setText(String.valueOf(data.get(2)));
 
         }catch (Exception e){
 
@@ -229,6 +233,8 @@ public class TwoUpController {
         }catch (Exception e){
 
         }
+        //setting 1st place to 10th place
+
         rank1.setText((String.valueOf(data.get(0)))+" " +(String.valueOf(data2.get(0))));
         rank2.setText((String.valueOf(data.get(1)))+" " +(String.valueOf(data2.get(1))));
         rank3.setText((String.valueOf(data.get(2)))+" " +(String.valueOf(data2.get(2))));
@@ -240,6 +246,8 @@ public class TwoUpController {
         rank9.setText((String.valueOf(data.get(8)))+" " +(String.valueOf(data2.get(8))));
         rank10.setText((String.valueOf(data.get(9)))+" " +(String.valueOf(data2.get(9))));
     }
+
+    //setting up information to be passed to this and other controllers
 
     public void setLabelTextu(String text){
         usernameLabel.setText(text);
@@ -254,6 +262,8 @@ public class TwoUpController {
         passNum.setText(text);
     }
 
+    //Random number generator
+
     public int randomNumber() {
 
         Random num = new Random();
@@ -264,8 +274,13 @@ public class TwoUpController {
         return aNumber;
     }
 
+    //Action for when the heads button is clicked on
+
     @FXML
     public void headsButtonOnAction(ActionEvent e) {
+
+        //setting a timer to disable both heads and tails button during animation to avoid scoring bug
+
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.millis(1250));
         transition.setNode(tailsButton);
@@ -278,6 +293,8 @@ public class TwoUpController {
         headsButton.setDisable(true);
         transition2.setOnFinished(evt -> headsButton.setDisable(false));
         transition2.play();
+
+        //Scoring system for if player wins/loses or has to roll again
 
         TwoUpController aNumber = new TwoUpController();
         int randomNumber = aNumber.randomNumber();
@@ -302,6 +319,7 @@ public class TwoUpController {
         currentScoreDisplay.setText(String.valueOf(num));
     }
 
+    //Setting default Style System
 
     @FXML
     public void styleButton1OnAction(ActionEvent e) throws IOException {
@@ -322,6 +340,8 @@ public class TwoUpController {
 
     }
 
+    //Setting second Style System
+
     @FXML
     public void styleButton2OnAction(ActionEvent e) {
         leftPanel.setStyle("-fx-background-color: red");
@@ -341,6 +361,8 @@ public class TwoUpController {
 
     }
 
+    //Setting third Style System
+
     @FXML
     public void styleButton3OnAction(ActionEvent e) {
         leftPanel.setStyle("-fx-background-color: orange");
@@ -359,8 +381,12 @@ public class TwoUpController {
         highscoreNumberDisplay.setTextFill(Color.ORANGE);
     }
 
+    //Action for when the Tails button is clicked on
+
     @FXML
     public void tailsButtonOnAction(ActionEvent e) {
+
+        //setting a timer to disable both heads and tails button during animation to avoid scoring bug
 
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.millis(1250));
@@ -374,6 +400,8 @@ public class TwoUpController {
         headsButton.setDisable(true);
         transition2.setOnFinished(evt -> headsButton.setDisable(false));
         transition2.play();
+
+        //Scoring system for if player wins/loses or has to roll again
 
         TwoUpController aNumber = new TwoUpController();
         int randomNumber = aNumber.randomNumber();
@@ -398,13 +426,17 @@ public class TwoUpController {
 
     }
 
+    //Action for when Quit and Submit Score button is clicked on
+
     @FXML
     private void quitButton2OnAction(ActionEvent e) throws SQLException {
 
+        //Database Connection Setup
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection st = connectNow.getConnection();
         String query = "update two_up_users set UserScore = '"+ Integer.parseInt (highscoreNumberDisplay.getText()) +"' WHERE username = '" + Integer.parseInt (userNum.getText()) + "' AND password = '" + Integer.parseInt (passNum.getText()) + "'";
         String track = "INSERT INTO database1.two_up_tracker(UserName) VALUES ("+Integer.parseInt (userNum.getText())+")";
+        //Updates Player's Highscore and then creates game number in Tracker database
         try {
             Statement upda = st.createStatement();
             Integer update = upda.executeUpdate(query);

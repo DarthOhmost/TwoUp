@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
     public Connection databaseLink;
 
+    //Sets up a Constructor to be used in other Controllers to establish a connection to the Database Using Login information provided
     public Connection getConnection(){
         String databaseName = "database1";
         String databaseUser = "root";

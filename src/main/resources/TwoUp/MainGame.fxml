@@ -60,7 +60,7 @@
                <Font size="27.0" />
             </font>
          </Label>
-         <Button fx:id="quitButton2" layoutX="240.0" layoutY="85.0" mnemonicParsing="false" onAction="#quitButton2OnAction" text="Quit" />
+         <Button fx:id="quitButton2" layoutX="192.0" layoutY="85.0" mnemonicParsing="false" onAction="#quitButton2OnAction" text="Quit and Submit Score" />
       </AnchorPane>
    </bottom>
    <top>

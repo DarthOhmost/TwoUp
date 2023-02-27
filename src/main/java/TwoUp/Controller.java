@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Controller {
+
+    //Setting up FXML components
     private Stage stage;
 
     private Scene scene;
@@ -41,9 +43,13 @@ public class Controller {
     @FXML
     private PasswordField passwordPasswordField;
 
+    //Action for when the Login Button is clicked
+
     @FXML
     public void loginButtonOnAction(ActionEvent e) throws IOException {
 
+        //Checks if login is valid with Username and Password the user has entered and if either is missing or if it doesn't match
+        //Database then Asks User to Enter Password and Username again
         if (usernameTextField.getText().isBlank() == false && passwordPasswordField.getText().isBlank() == false) {
             //loginMessageLabel.setText("Please Enter Valid Username or Password");
             validateLogin();
@@ -55,6 +61,8 @@ public class Controller {
     }
     @FXML
     private Button quitButton;
+
+    //Scene Trigger for when a valid login signs in.
 
     @FXML
     private void sceneTrigger() throws IOException
@@ -74,22 +82,29 @@ public class Controller {
         stage.show();
     }
 
+    //Action for when quit button is pressed
+
     @FXML
     private void quitButtonOnAction(ActionEvent e) {
         Stage    stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
     }
 
+    //Validation for user Login
+
     @FXML
     public void validateLogin() {
+        //Connects to Database
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection connectDB = connectNow.getConnection();
 
+        //Setting Up Queries
         String verifyLogin = "select count(1) FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
         String fName = "select Firstname FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
         String lName = "select Lastname FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
         String hScore = "select UserScore FROM two_up_users WHERE username = '" + usernameTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'";
         try {
+            //Connects to database then uses queries set up to gather if it's a valid login and then gathers the user's Firstname, Lastname, Usernumber and their Highscore
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(verifyLogin);
             Statement first = connectDB.createStatement();
@@ -99,6 +114,7 @@ public class Controller {
             Statement high = connectDB.createStatement();
             ResultSet hi = high.executeQuery(hScore);
 
+            //If Valid
             while(queryResult.next()) {
                 if (queryResult.getInt(1) == 1) {
 
@@ -119,6 +135,7 @@ public class Controller {
 
 
                     sceneTrigger();
+                    //If Invalid
                 } else{
                     loginMessageLabel.setText("Invalid Login Please Try Again");
                 }
