@@ -66,6 +66,7 @@ public class Controller {
         twoUpController.setLabelTexth(String.valueOf(High));
         twoUpController.setLabelTextun(usernameTextField.getText());
         twoUpController.setLabelTextup(passwordPasswordField.getText());
+        twoUpController.startupleader();
 
         stage = (Stage)loginMessageLabel.getScene().getWindow();
         scene = new Scene(root);

@@ -1,10 +1,11 @@
 package TwoUp;
 
 import javafx.animation.Transition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -85,10 +86,38 @@ public class TwoUpController {
         }
     };
 
-
-
     @FXML
     private ImageView coinAnimation;
+
+    @FXML
+    private Label rank1;
+
+    @FXML
+    private Label rank2;
+
+    @FXML
+    private Label rank3;
+
+    @FXML
+    private Label rank4;
+
+    @FXML
+    private Label rank5;
+
+    @FXML
+    private Label rank6;
+
+    @FXML
+    private Label rank7;
+
+    @FXML
+    private Label rank8;
+
+    @FXML
+    private Label rank9;
+
+    @FXML
+    private Label rank10;
 
     @FXML
     private Label currentScoreDisplay;
@@ -117,6 +146,61 @@ public class TwoUpController {
     public int highNum = 0;
 
     public int num = 0;
+
+    public void startupleader(){
+        DatabaseConnection connectNow = new DatabaseConnection();
+        Connection st = connectNow.getConnection();
+        ObservableList data = FXCollections.observableArrayList();
+        ObservableList data2 = FXCollections.observableArrayList();
+        try {
+            PreparedStatement ps = st.prepareStatement("select Firstname From two_up_users order by UserScore desc");
+            ResultSet rs = ps.executeQuery();
+            ObservableList row = null;
+            while (rs.next()) {
+                row = FXCollections.observableArrayList();
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    row.add(rs.getString(i));
+                }
+
+                //System.out.println("Row [1] added" + row);
+
+                data.add(row);
+
+            }
+            //Testing for Correct User Info
+            //System.out.println(data.get(2));
+            rank1.setText(String.valueOf(data.get(2)));
+
+        }catch (Exception e){
+
+        }
+        try {
+            PreparedStatement ps = st.prepareStatement("select UserScore From two_up_users order by UserScore desc");
+            ResultSet rs =ps.executeQuery();
+
+            while(rs.next()){
+                ObservableList row = FXCollections.observableArrayList();
+                for (int i = 1; i<= rs.getMetaData().getColumnCount(); i++){
+                    row.add(rs.getString(i));
+                }
+                //System.out.println("Row [1] added" + row);
+                data2.add(row);
+            }
+
+        }catch (Exception e){
+
+        }
+        rank1.setText((String.valueOf(data.get(0)))+" " +(String.valueOf(data2.get(0))));
+        rank2.setText((String.valueOf(data.get(1)))+" " +(String.valueOf(data2.get(1))));
+        rank3.setText((String.valueOf(data.get(2)))+" " +(String.valueOf(data2.get(2))));
+        rank4.setText((String.valueOf(data.get(3)))+" " +(String.valueOf(data2.get(3))));
+        rank5.setText((String.valueOf(data.get(4)))+" " +(String.valueOf(data2.get(4))));
+        rank6.setText((String.valueOf(data.get(5)))+" " +(String.valueOf(data2.get(5))));
+        rank7.setText((String.valueOf(data.get(6)))+" " +(String.valueOf(data2.get(6))));
+        rank8.setText((String.valueOf(data.get(7)))+" " +(String.valueOf(data2.get(7))));
+        rank9.setText((String.valueOf(data.get(8)))+" " +(String.valueOf(data2.get(8))));
+        rank10.setText((String.valueOf(data.get(9)))+" " +(String.valueOf(data2.get(9))));
+    }
 
     public void setLabelTextu(String text){
         usernameLabel.setText(text);
@@ -196,9 +280,12 @@ public class TwoUpController {
         DatabaseConnection connectNow = new DatabaseConnection();
         Connection st = connectNow.getConnection();
         String query = "update two_up_users set UserScore = '"+ Integer.parseInt (highscoreNumberDisplay.getText()) +"' WHERE username = '" + Integer.parseInt (userNum.getText()) + "' AND password = '" + Integer.parseInt (passNum.getText()) + "'";
+        String track = "INSERT INTO database1.two_up_tracker(UserName) VALUES ("+Integer.parseInt (userNum.getText())+")";
         try {
             Statement upda = st.createStatement();
             Integer update = upda.executeUpdate(query);
+            Statement tra = st.createStatement();
+            Integer trac = tra.executeUpdate(track);
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);
