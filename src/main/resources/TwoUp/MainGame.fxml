@@ -9,15 +9,15 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TwoUp.TwoUpController">
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="120.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="leftPanel" prefHeight="200.0" prefWidth="120.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
          <Label fx:id="stylesLabel" layoutX="45.0" layoutY="5.0" text="Styles" textFill="WHITE" underline="true" />
-         <Button fx:id="styleButton1" layoutX="34.0" layoutY="38.0" mnemonicParsing="false" text="Style 1" />
-         <Button fx:id="styleButton2" layoutX="34.0" layoutY="85.0" mnemonicParsing="false" text="Style 2" />
-         <Button fx:id="styleButton3" layoutX="34.0" layoutY="134.0" mnemonicParsing="false" text="Style 3" />
+         <Button fx:id="styleButton1" layoutX="34.0" layoutY="38.0" mnemonicParsing="false" onAction="#styleButton1OnAction" text="Style 1" />
+         <Button fx:id="styleButton2" layoutX="34.0" layoutY="85.0" mnemonicParsing="false" onAction="#styleButton2OnAction" text="Style 2" />
+         <Button fx:id="styleButton3" layoutX="34.0" layoutY="134.0" mnemonicParsing="false" onAction="#styleButton3OnAction" text="Style 3" />
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane prefHeight="200.0" prefWidth="120.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="rightPanel" prefHeight="200.0" prefWidth="120.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER">
          <Label fx:id="leaderboardLabel" layoutX="29.0" layoutY="5.0" text="Leaderboard" textFill="WHITE" underline="true" />
          <Label fx:id="rank1" layoutX="29.0" layoutY="22.0" text="Label" textFill="#f2ff62" />
          <Label fx:id="rank2" layoutX="29.0" layoutY="39.0" text="Label" textFill="#9e9e9e" />
@@ -32,9 +32,9 @@
       </AnchorPane>
    </right>
    <bottom>
-      <AnchorPane prefHeight="120.0" prefWidth="520.0" style="-fx-background-color: brown;" BorderPane.alignment="CENTER">
-         <Button fx:id="headsButton" layoutX="153.0" layoutY="13.0" mnemonicParsing="false" onAction="#headsButtonOnAction" prefHeight="25.0" prefWidth="80.0" text="Heads" />
-         <Button fx:id="tailsButton" layoutX="295.0" layoutY="13.0" mnemonicParsing="false" onAction="#tailsButtonOnAction" prefHeight="25.0" prefWidth="80.0" text="Tails" />
+      <AnchorPane fx:id="bottomPanel" prefHeight="120.0" prefWidth="520.0" style="-fx-background-color: brown;" BorderPane.alignment="CENTER">
+         <Button fx:id="headsButton" layoutX="160.0" layoutY="13.0" mnemonicParsing="false" onAction="#headsButtonOnAction" prefHeight="25.0" prefWidth="80.0" text="Heads" />
+         <Button fx:id="tailsButton" layoutX="289.0" layoutY="13.0" mnemonicParsing="false" onAction="#tailsButtonOnAction" prefHeight="25.0" prefWidth="80.0" text="Tails" />
          <Label fx:id="resultsLabel" layoutX="184.0" layoutY="52.0" text="Play Again/ Results" textFill="WHITE">
             <font>
                <Font size="18.0" />
@@ -45,17 +45,17 @@
                <Font size="18.0" />
             </font>
          </Label>
-         <Label fx:id="highscoreLabel" layoutX="425.0" layoutY="12.0" text="Highscore" textFill="WHITE" underline="true">
+         <Label fx:id="highscoreLabel" layoutX="410.0" layoutY="12.0" text="Highscore" textFill="WHITE" underline="true">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <Label fx:id="currentScoreDisplay" layoutX="35.0" layoutY="46.0" text="Score" textFill="WHITE">
+         <Label fx:id="currentScoreDisplay" layoutX="35.0" layoutY="46.0" textFill="WHITE">
             <font>
                <Font size="27.0" />
             </font>
          </Label>
-         <Label fx:id="highscoreNumberDisplay" layoutX="432.0" layoutY="46.0" text="Score" textFill="WHITE">
+         <Label fx:id="highscoreNumberDisplay" layoutX="432.0" layoutY="46.0" textFill="WHITE">
             <font>
                <Font size="27.0" />
             </font>
@@ -64,13 +64,13 @@
       </AnchorPane>
    </bottom>
    <top>
-      <AnchorPane prefHeight="58.0" prefWidth="520.0" BorderPane.alignment="CENTER">
-         <Label fx:id="titleLabel" layoutX="45.0" text="Welcome to TwoUp" underline="true">
+      <AnchorPane fx:id="topPanel" prefHeight="58.0" prefWidth="520.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <Label fx:id="titleLabel" layoutX="45.0" text="Welcome to TwoUp" textFill="WHITE" underline="true">
             <font>
                <Font size="32.0" />
             </font>
          </Label>
-         <Label fx:id="usernameLabel" layoutX="339.0" layoutY="16.0" text="Username" underline="true">
+         <Label fx:id="usernameLabel" layoutX="339.0" layoutY="16.0" text="Username" textFill="WHITE" underline="true">
             <font>
                <Font size="16.0" />
             </font>

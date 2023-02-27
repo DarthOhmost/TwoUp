@@ -1,20 +1,30 @@
 package TwoUp;
 
+import com.almasb.fxgl.app.MainWindow;
 import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Delayed;
 
 
 public class TwoUpController {
@@ -93,6 +103,11 @@ public class TwoUpController {
     private Label rank1;
 
     @FXML
+    private Label currentScoreLabel;
+
+    @FXML
+    private Label highscoreLabel;
+    @FXML
     private Label rank2;
 
     @FXML
@@ -132,6 +147,9 @@ public class TwoUpController {
     private Button headsButton;
 
     @FXML
+    Button tailsButton;
+
+    @FXML
     private Button quitButton2;
 
     @FXML
@@ -142,6 +160,27 @@ public class TwoUpController {
 
     @FXML
     public Label passNum;
+
+    @FXML
+    public Button styleButton1;
+
+    @FXML
+    AnchorPane leftPanel;
+
+    @FXML
+    AnchorPane rightPanel;
+
+    @FXML
+    AnchorPane topPanel;
+
+    @FXML
+    AnchorPane bottomPanel;
+
+    private Stage stage;
+
+    private Scene scene;
+
+    private Parent root;
 
     public int highNum = 0;
 
@@ -227,6 +266,19 @@ public class TwoUpController {
 
     @FXML
     public void headsButtonOnAction(ActionEvent e) {
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(Duration.millis(1250));
+        transition.setNode(tailsButton);
+        tailsButton.setDisable(true);
+        transition.setOnFinished(evt -> tailsButton.setDisable(false));
+        transition.play();
+        TranslateTransition transition2 = new TranslateTransition();
+        transition2.setDuration(Duration.millis(1250));
+        transition2.setNode(headsButton);
+        headsButton.setDisable(true);
+        transition2.setOnFinished(evt -> headsButton.setDisable(false));
+        transition2.play();
+
         TwoUpController aNumber = new TwoUpController();
         int randomNumber = aNumber.randomNumber();
         if (randomNumber == 1){
@@ -250,8 +302,79 @@ public class TwoUpController {
         currentScoreDisplay.setText(String.valueOf(num));
     }
 
+
+    @FXML
+    public void styleButton1OnAction(ActionEvent e) throws IOException {
+        leftPanel.setStyle("-fx-background-color: green");
+        rightPanel.setStyle("-fx-background-color: green");
+        topPanel.setStyle("-fx-background-color: black");
+        bottomPanel.setStyle("-fx-background-color: brown");
+        resultsLabel.setFont(Font.font ("System", 18));
+        resultsLabel.setTextFill(Color.WHITE);
+        currentScoreLabel.setFont(Font.font ("System", 18));
+        currentScoreLabel.setTextFill(Color.WHITE);
+        highscoreLabel.setFont(Font.font ("System", 18));
+        highscoreLabel.setTextFill(Color.WHITE);
+        currentScoreDisplay.setFont(Font.font ("System", 27));
+        currentScoreDisplay.setTextFill(Color.WHITE);
+        highscoreNumberDisplay.setFont(Font.font ("System", 27));
+        highscoreNumberDisplay.setTextFill(Color.WHITE);
+
+    }
+
+    @FXML
+    public void styleButton2OnAction(ActionEvent e) {
+        leftPanel.setStyle("-fx-background-color: red");
+        rightPanel.setStyle("-fx-background-color: red");
+        topPanel.setStyle("-fx-background-color: black");
+        bottomPanel.setStyle("-fx-background-color: black");
+        resultsLabel.setFont(Font.font ("Lucida Handwriting", 18));
+        resultsLabel.setTextFill(Color.WHITE);
+        currentScoreLabel.setFont(Font.font ("Lucida Handwriting", 17));
+        currentScoreLabel.setTextFill(Color.WHITE);
+        highscoreLabel.setFont(Font.font ("Lucida Handwriting", 17));
+        highscoreLabel.setTextFill(Color.WHITE);
+        currentScoreDisplay.setFont(Font.font ("Lucida Handwriting", 27));
+        currentScoreDisplay.setTextFill(Color.WHITE);
+        highscoreNumberDisplay.setFont(Font.font ("Lucida Handwriting", 27));
+        highscoreNumberDisplay.setTextFill(Color.WHITE);
+
+    }
+
+    @FXML
+    public void styleButton3OnAction(ActionEvent e) {
+        leftPanel.setStyle("-fx-background-color: orange");
+        rightPanel.setStyle("-fx-background-color: orange");
+        topPanel.setStyle("-fx-background-color: black");
+        bottomPanel.setStyle("-fx-background-color: Purple");
+        resultsLabel.setFont(Font.font ("Copperplate Gothic Bold", 16));
+        resultsLabel.setTextFill(Color.ORANGE);
+        currentScoreLabel.setFont(Font.font ("Copperplate Gothic Bold", 16));
+        currentScoreLabel.setTextFill(Color.ORANGE);
+        highscoreLabel.setFont(Font.font ("Copperplate Gothic Bold", 16));
+        highscoreLabel.setTextFill(Color.ORANGE);
+        currentScoreDisplay.setFont(Font.font ("Copperplate Gothic Bold", 27));
+        currentScoreDisplay.setTextFill(Color.ORANGE);
+        highscoreNumberDisplay.setFont(Font.font ("Copperplate Gothic Bold", 27));
+        highscoreNumberDisplay.setTextFill(Color.ORANGE);
+    }
+
     @FXML
     public void tailsButtonOnAction(ActionEvent e) {
+
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(Duration.millis(1250));
+        transition.setNode(tailsButton);
+        tailsButton.setDisable(true);
+        transition.setOnFinished(evt -> tailsButton.setDisable(false));
+        transition.play();
+        TranslateTransition transition2 = new TranslateTransition();
+        transition2.setDuration(Duration.millis(1250));
+        transition2.setNode(headsButton);
+        headsButton.setDisable(true);
+        transition2.setOnFinished(evt -> headsButton.setDisable(false));
+        transition2.play();
+
         TwoUpController aNumber = new TwoUpController();
         int randomNumber = aNumber.randomNumber();
         if (randomNumber == 2){
@@ -272,6 +395,7 @@ public class TwoUpController {
         }
 
         currentScoreDisplay.setText(String.valueOf(num));
+
     }
 
     @FXML
