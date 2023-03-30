@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class TwoUpApplication extends Application {
-
+    @Override
     public void start(Stage stage) throws IOException {
 
         //Setting up The Login Page
